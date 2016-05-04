@@ -23,11 +23,11 @@ export default class DateTimeField extends Component {
     if (this.props.inputFormat) { return this.props.inputFormat; }
     switch (this.props.mode) {
       case Constants.MODE_TIME:
-        return "h:mm A";
+        return "h:mm:ss A";
       case Constants.MODE_DATE:
         return "MM/DD/YY";
       default:
-        return "MM/DD/YY h:mm A";
+        return "MM/DD/YY h:mm:ss A";
     }
   }
 
@@ -161,6 +161,17 @@ export default class DateTimeField extends Component {
     });
   }
 
+  addSecond = () => {
+    return this.setState({
+      selectedDate: this.state.selectedDate.clone().add(1, "seconds")
+    }, function() {
+      this.props.onChange(this.state.selectedDate.format(this.props.format));
+      return this.setState({
+        inputValue: this.state.selectedDate.format(this.resolvePropsInputFormat())
+      });
+    });
+  }
+
   addMinute = () => {
     return this.setState({
       selectedDate: this.state.selectedDate.clone().add(1, "minutes")
@@ -198,6 +209,17 @@ export default class DateTimeField extends Component {
   addDecade = () => {
     return this.setState({
       viewDate: this.state.viewDate.add(10, "years")
+    });
+  }
+
+  subtractSecond = () => {
+    return this.setState({
+      selectedDate: this.state.selectedDate.clone().subtract(1, "seconds")
+    }, () => {
+      this.props.onChange(this.state.selectedDate.format(this.props.format));
+      return this.setState({
+        inputValue: this.state.selectedDate.format(this.resolvePropsInputFormat())
+      });
     });
   }
 
@@ -346,6 +368,7 @@ export default class DateTimeField extends Component {
                   addDecade={this.addDecade}
                   addHour={this.addHour}
                   addMinute={this.addMinute}
+                  addSecond={this.addSecond}
                   addMonth={this.addMonth}
                   addYear={this.addYear}
                   daysOfWeekDisabled={this.props.daysOfWeekDisabled}
@@ -365,6 +388,7 @@ export default class DateTimeField extends Component {
                   subtractDecade={this.subtractDecade}
                   subtractHour={this.subtractHour}
                   subtractMinute={this.subtractMinute}
+                  subtractSecond={this.subtractSecond}
                   subtractMonth={this.subtractMonth}
                   subtractYear={this.subtractYear}
                   togglePeriod={this.togglePeriod}
