@@ -1,18 +1,18 @@
 {
-  "name": "react-bootstrap-datetimepicker",
-  "version": "0.0.22",
-  "description": "A bootstrap datetime picker component for React.js",
-  "homepage": "http://dev.quri.com/react-bootstrap-datetimepicker/",
+  "name": "react-bootstrap-datetimepicker-seconds",
+  "version": "1.0.0",
+  "description": "A bootstrap datetime picker component for React.js that supports seconds",
+  "homepage": "https://github.com/Renaud009/react-bootstrap-datetimepicker",
   "repository": {
     "type": "git",
-    "url": "http://github.com/quri/react-bootstrap-datetimepicker"
+    "url": "https://github.com/Renaud009/react-bootstrap-datetimepicker"
   },
   "main": "./lib/DateTimeField.js",
   "scripts": {
     "build-npm": "babel --stage 0 ./src -d ./lib --ignore __tests__/*",
     "build": "NODE_ENV=production webpack --output-file react-bootstrap-datetimepicker.js",
     "build-min": "NODE_ENV=production COMPRESS=1 webpack --output-file react-bootstrap-datetimepicker.min.js",
-    "examples": "webpack-dev-server --config ./examples/webpack.config.js",
+    "examples": "webpack-dev-server --host 10.30.90.172 --config ./examples/webpack.config.js",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -23,7 +23,7 @@
     "datetimepicker",
     "datetime"
   ],
-  "author": "Loïc CHOLLIER <loic@chollier.com>",
+  "author": "Renaud Hébert-Legault <renaud.hebertlegault@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
     "react": ">=0.14"

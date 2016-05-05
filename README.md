@@ -1,19 +1,20 @@
-react-bootstrap-datetimepicker
+react-bootstrap-datetimepicker-seconds
 ===============================
 
-This project is a port of https://github.com/Eonasdan/bootstrap-datetimepicker for React.js
+This project is a fork of https://github.com/quri/react-bootstrap-datetimepicker that allow the support of seconds.
+TimePicker default format is now 'h:mm:ss A' instead of 'h:mm A'.
 
 Usage
 ===============================
 
 Installation :
 ```
-npm install react-bootstrap-datetimepicker
+npm install react-bootstrap-datetimepicker-seconds
 ```
 
 Then
 ```javascript
-var DateTimeField = require('react-bootstrap-datetimepicker');
+var DateTimeField = require('react-bootstrap-datetimepicker-seconds');
 
 ...
 
