@@ -216,6 +216,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	    };
 
+	    this.setSelectedSecond = function (e) {
+	      return _this.setState({
+	        selectedDate: _this.state.selectedDate.clone().second(_this.state.selectedDate.seconds()).second(parseInt(e.target.innerHTML))
+	      }, function () {
+	        this.closePicker();
+	        this.props.onChange(this.state.selectedDate.format(this.props.format));
+	        return this.setState({
+	          inputValue: this.state.selectedDate.format(this.state.inputFormat)
+	        });
+	      });
+	    };
+
 	    this.setViewMonth = function (month) {
 	      return _this.setState({
 	        viewDate: _this.state.viewDate.clone().month(month)
@@ -1230,6 +1242,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            selectedDate: _this.props.selectedDate,
 	            setSelectedHour: _this.props.setSelectedHour,
 	            setSelectedMinute: _this.props.setSelectedMinute,
+	            setSelectedSecond: _this.props.setSelectedSecond,
 	            subtractHour: _this.props.subtractHour,
 	            subtractMinute: _this.props.subtractMinute,
 	            subtractSecond: _this.props.subtractSecond,
@@ -1301,7 +1314,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      widgetStyle: _react.PropTypes.object,
 	      togglePicker: _react.PropTypes.func,
 	      setSelectedHour: _react.PropTypes.func,
-	      setSelectedMinute: _react.PropTypes.func
+	      setSelectedMinute: _react.PropTypes.func,
+	      setSelectedSecond: _react.PropTypes.func
 	    },
 	    enumerable: true
 	  }]);
