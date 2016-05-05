@@ -115,11 +115,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	      switch (_this.props.mode) {
 	        case _ConstantsJs2["default"].MODE_TIME:
-	          return "h:mm A";
+	          return "h:mm:ss A";
 	        case _ConstantsJs2["default"].MODE_DATE:
 	          return "MM/DD/YY";
 	        default:
-	          return "MM/DD/YY h:mm A";
+	          return "MM/DD/YY h:mm:ss A";
 	      }
 	    };
 
@@ -228,6 +228,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	    };
 
+	    this.addSecond = function () {
+	      return _this.setState({
+	        selectedDate: _this.state.selectedDate.clone().add(1, "seconds")
+	      }, function () {
+	        this.props.onChange(this.state.selectedDate.format(this.props.format));
+	        return this.setState({
+	          inputValue: this.state.selectedDate.format(this.resolvePropsInputFormat())
+	        });
+	      });
+	    };
+
 	    this.addMinute = function () {
 	      return _this.setState({
 	        selectedDate: _this.state.selectedDate.clone().add(1, "minutes")
@@ -265,6 +276,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    this.addDecade = function () {
 	      return _this.setState({
 	        viewDate: _this.state.viewDate.add(10, "years")
+	      });
+	    };
+
+	    this.subtractSecond = function () {
+	      return _this.setState({
+	        selectedDate: _this.state.selectedDate.clone().subtract(1, "seconds")
+	      }, function () {
+	        _this.props.onChange(_this.state.selectedDate.format(_this.props.format));
+	        return _this.setState({
+	          inputValue: _this.state.selectedDate.format(_this.resolvePropsInputFormat())
+	        });
 	      });
 	    };
 
@@ -422,6 +444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          addDecade: this.addDecade,
 	          addHour: this.addHour,
 	          addMinute: this.addMinute,
+	          addSecond: this.addSecond,
 	          addMonth: this.addMonth,
 	          addYear: this.addYear,
 	          daysOfWeekDisabled: this.props.daysOfWeekDisabled,
@@ -441,6 +464,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          subtractDecade: this.subtractDecade,
 	          subtractHour: this.subtractHour,
 	          subtractMinute: this.subtractMinute,
+	          subtractSecond: this.subtractSecond,
 	          subtractMonth: this.subtractMonth,
 	          subtractYear: this.subtractYear,
 	          togglePeriod: this.togglePeriod,
@@ -1201,12 +1225,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _react2["default"].createElement(_DateTimePickerTimeJs2["default"], {
 	            addHour: _this.props.addHour,
 	            addMinute: _this.props.addMinute,
+	            addSecond: _this.props.addSecond,
 	            mode: _this.props.mode,
 	            selectedDate: _this.props.selectedDate,
 	            setSelectedHour: _this.props.setSelectedHour,
 	            setSelectedMinute: _this.props.setSelectedMinute,
 	            subtractHour: _this.props.subtractHour,
 	            subtractMinute: _this.props.subtractMinute,
+	            subtractSecond: _this.props.subtractSecond,
 	            togglePeriod: _this.props.togglePeriod,
 	            viewDate: _this.props.viewDate
 	          })
@@ -1264,6 +1290,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      addHour: _react.PropTypes.func.isRequired,
 	      subtractMinute: _react.PropTypes.func.isRequired,
 	      addMinute: _react.PropTypes.func.isRequired,
+	      subtractSecond: _react.PropTypes.func.isRequired,
+	      addSecond: _react.PropTypes.func.isRequired,
 	      addDecade: _react.PropTypes.func.isRequired,
 	      subtractDecade: _react.PropTypes.func.isRequired,
 	      togglePeriod: _react.PropTypes.func.isRequired,
