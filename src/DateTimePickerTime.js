@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from "react";
+import DateTimePickerSeconds from "./DateTimePickerSeconds";
 import DateTimePickerMinutes from "./DateTimePickerMinutes";
 import DateTimePickerHours from "./DateTimePickerHours";
 import Constants from "./Constants.js";
@@ -7,10 +8,13 @@ export default class DateTimePickerTime extends Component {
   static propTypes = {
     setSelectedHour: PropTypes.func.isRequired,
     setSelectedMinute: PropTypes.func.isRequired,
+    setSelectedSecond: PropTypes.func.isRequired,
     subtractHour: PropTypes.func.isRequired,
     addHour: PropTypes.func.isRequired,
     subtractMinute: PropTypes.func.isRequired,
     addMinute: PropTypes.func.isRequired,
+    subtractSecond: PropTypes.func.isRequired,
+    addSecond: PropTypes.func.isRequired,
     viewDate: PropTypes.object.isRequired,
     selectedDate: PropTypes.object.isRequired,
     togglePeriod: PropTypes.func.isRequired,
@@ -18,14 +22,22 @@ export default class DateTimePickerTime extends Component {
   }
 
   state = {
+    secondsDisplayed: false,
     minutesDisplayed: false,
     hoursDisplayed: false
   }
 
   goBack = () => {
     return this.setState({
+      secondsDisplayed: false,
       minutesDisplayed: false,
       hoursDisplayed: false
+    });
+  }
+
+  showSeconds = () => {
+    return this.setState({
+      secondsDisplayed: true
     });
   }
 
@@ -39,6 +51,14 @@ export default class DateTimePickerTime extends Component {
     return this.setState({
       hoursDisplayed: true
     });
+  }
+
+  renderSeconds = () => {
+    if (this.state.secondsDisplayed) {
+      return <DateTimePickerSeconds {...this.props} onSwitch={this.goBack} />;
+    } else {
+      return null;
+    }
   }
 
   renderMinutes = () => {
@@ -71,6 +91,10 @@ export default class DateTimePickerTime extends Component {
               <td><a className="btn" onClick={this.props.addMinute}><span className="glyphicon glyphicon-chevron-up" /></a></td>
 
               <td className="separator"></td>
+
+              <td><a className="btn" onClick={this.props.addSecond}><span className="glyphicon glyphicon-chevron-up" /></a></td>
+
+              <td className="separator"></td>
             </tr>
 
             <tr>
@@ -79,6 +103,10 @@ export default class DateTimePickerTime extends Component {
               <td className="separator">:</td>
 
               <td><span className="timepicker-minute" onClick={this.showMinutes}>{this.props.selectedDate.format("mm")}</span></td>
+
+              <td className="separator"></td>
+
+              <td><span className="timepicker-second" onClick={this.showSeconds}>{this.props.selectedDate.format("ss")}</span></td>
 
               <td className="separator"></td>
 
@@ -91,6 +119,10 @@ export default class DateTimePickerTime extends Component {
               <td className="separator"></td>
 
               <td><a className="btn" onClick={this.props.subtractMinute}><span className="glyphicon glyphicon-chevron-down" /></a></td>
+
+              <td className="separator"></td>
+
+              <td><a className="btn" onClick={this.props.subtractSecond}><span className="glyphicon glyphicon-chevron-down" /></a></td>
 
               <td className="separator"></td>
             </tr>
@@ -111,6 +143,8 @@ export default class DateTimePickerTime extends Component {
           {this.renderHours()}
 
           {this.renderMinutes()}
+
+          {this.renderSeconds()}
         </div>
     );
   }
