@@ -149,6 +149,18 @@ export default class DateTimeField extends Component {
     });
   }
 
+  setSelectedSecond = (e) => {
+    return this.setState({
+      selectedDate: this.state.selectedDate.clone().second(this.state.selectedDate.seconds()).second(parseInt(e.target.innerHTML))
+    }, function() {
+      this.closePicker();
+      this.props.onChange(this.state.selectedDate.format(this.props.format));
+      return this.setState({
+        inputValue: this.state.selectedDate.format(this.state.inputFormat)
+      });
+    });
+  }
+
   setViewMonth = (month) => {
     return this.setState({
       viewDate: this.state.viewDate.clone().month(month)
