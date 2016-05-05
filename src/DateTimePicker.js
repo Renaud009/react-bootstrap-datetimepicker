@@ -28,6 +28,8 @@ export default class DateTimePicker extends Component {
     addHour: PropTypes.func.isRequired,
     subtractMinute: PropTypes.func.isRequired,
     addMinute: PropTypes.func.isRequired,
+    subtractSecond: PropTypes.func.isRequired,
+    addSecond: PropTypes.func.isRequired,
     addDecade: PropTypes.func.isRequired,
     subtractDecade: PropTypes.func.isRequired,
     togglePeriod: PropTypes.func.isRequired,
@@ -74,12 +76,14 @@ export default class DateTimePicker extends Component {
         <DateTimePickerTime
               addHour={this.props.addHour}
               addMinute={this.props.addMinute}
+              addSecond={this.props.addSecond}
               mode={this.props.mode}
               selectedDate={this.props.selectedDate}
               setSelectedHour={this.props.setSelectedHour}
               setSelectedMinute={this.props.setSelectedMinute}
               subtractHour={this.props.subtractHour}
               subtractMinute={this.props.subtractMinute}
+              subtractSecond={this.props.subtractSecond}
               togglePeriod={this.props.togglePeriod}
               viewDate={this.props.viewDate}
         />
