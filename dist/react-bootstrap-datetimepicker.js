@@ -468,6 +468,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          setSelectedDate: this.setSelectedDate,
 	          setSelectedHour: this.setSelectedHour,
 	          setSelectedMinute: this.setSelectedMinute,
+	          setSelectedSecond: this.setSelectedSecond,
 	          setViewMonth: this.setViewMonth,
 	          setViewYear: this.setViewYear,
 	          showDatePicker: this.state.showDatePicker,
